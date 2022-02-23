@@ -1,6 +1,6 @@
 import { Button, Input } from 'react-native-elements';
 
-export default function AgregarAutoScreen({route}) {
+export default function EditarAutoScreen({route}) {
   const auto = route.params?.params.auto;
 
   return (

@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
-import navReducer from './store/slices/navSlice'
+import { createStore,combineReducers } from "@reduxjs/toolkit";
+import autosReducer from "./slices/autosSlice";
 
-export const stire = configureStore({
-  reducer: {
-    nav: navReducer,
-  }
+const reducers = combineReducers({
+  autos: autosReducer
 })
+
+export const store = createStore(reducers);

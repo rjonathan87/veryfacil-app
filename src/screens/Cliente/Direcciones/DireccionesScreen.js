@@ -1,70 +1,47 @@
-import { View, Text, Alert } from "react-native";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { Alert } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { Button, ListItem } from "react-native-elements";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import { useNavigation } from "@react-navigation/native";
 
 // import FAB from "react-native-fab";
-import { FAB } from 'react-native-elements';
-import { useState } from "react";
+import { FAB } from "react-native-elements";
 
-const listaAutos = [
+const listaDirecciones = [
   {
     id: 1,
-    placas: "ACG123",
-    modelo: "Audi",
+    street: "Kulas Light",
+    suite: "Apt. 556",
+    city: "Gwenborough",
+    zipcode: "92998-3874",
+    geo: {
+      lat: "-37.3159",
+      lng: "81.1496",
+    },
   },
   {
     id: 2,
-    placas: "DFG123",
-    modelo: "Vento",
-  },
-  {
-    id: 3,
-    placas: "CVB123",
-    modelo: "Toyota",
-  },
-  {
-    id: 4,
-    placas: "DFG654",
-    modelo: "Golf",
-  },
-  {
-    id: 5,
-    placas: "DFG654",
-    modelo: "VW",
-  },
-  {
-    id: 6,
-    placas: "KJH789",
-    modelo: "Setra",
-  },
-  {
-    id: 7,
-    placas: "POI567",
-    modelo: "Bi Smart",
-  },
-  {
-    id: 8,
-    placas: "ERT567",
-    modelo: "Avanza",
-  },
-  {
-    id: 9,
-    placas: "098WER",
-    modelo: "Frontier",
-  },
+    street: "Victor Plains",
+    suite: "Suite 879",
+    city: "Wisokyburgh",
+    zipcode: "90566-7771",
+    geo: {
+      lat: "-43.9509",
+      lng: "-34.4618",
+    },
+  }
 ];
 
-export default function HomeScreen() {
+export default function DireccionesScreen() {
   const navigation = useNavigation();
 
-  const editarAuto = (id) => {
-    let auto = listaAutos.filter( auto => auto.id === id)
-    navigation.navigate("EditarAutoScreen", {
-      params: { auto },
+  const editarDireccion = (id) => {
+    let direccion = listaDirecciones.filter((direccion) => direccion.id === id);
+    navigation.navigate("EditarDireccionesScreen", {
+      params: { direccion },
     });
   };
+
   const eliminarAuto = (id) => {
     Alert.alert("Alerta!", "Está seguro de eliminar?", [
       {
@@ -83,14 +60,14 @@ export default function HomeScreen() {
   return (
     <>
       <ScrollView>
-        {listaAutos.map((l, i) => (
+        {listaDirecciones.map((l, i) => (
           <ListItem.Swipeable
             key={i}
             leftContent={
               <Button
                 icon={{ type: "font-awesome", name: "gears", color: "white" }}
                 buttonStyle={{ minHeight: "100%" }}
-                onPress={() => editarAuto(l.id)}
+                onPress={() => editarDireccion(l.id)}
               />
             }
             rightContent={
@@ -102,10 +79,10 @@ export default function HomeScreen() {
               />
             }
           >
-            <Icon type="font-awesome" name="car" color="tomato" />
+            <Icon type="font-awesome" name="address-book" color="blue" />
             <ListItem.Content>
-              <ListItem.Title>{l.modelo}</ListItem.Title>
-              <ListItem.Subtitle>{l.placas}</ListItem.Subtitle>
+              <ListItem.Title>{l.street}</ListItem.Title>
+              <ListItem.Subtitle>{l.suite}, {l.city}, {l.zipcode}</ListItem.Subtitle>
             </ListItem.Content>
             <ListItem.Chevron />
           </ListItem.Swipeable>
@@ -113,11 +90,11 @@ export default function HomeScreen() {
       </ScrollView>
 
       <FAB
-          placement="right"
-          icon={{ name: 'add', color: 'white' }}
-          color="#2e4053"
-          onPress={() => navigation.navigate("AgregarAutoScreen")}
-        />
+        placement="right"
+        icon={{ name: "add", color: "white" }}
+        color="#2e4053"
+        onPress={() => navigation.navigate("AgregarDireccionesScreen")}
+      />
     </>
   );
 }

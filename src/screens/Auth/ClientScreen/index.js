@@ -23,12 +23,6 @@ export default function index() {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btns}
-          onPress={() => navigation.navigate("ModosPagoScreen")}
-        >
-          <Text style={styles.txtBtns}>Modos de Pago</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.btns}
           onPress={() => navigation.navigate("ServiciosScreen")}
         >
           <Text style={styles.txtBtns}>Lista de Servicios</Text>
